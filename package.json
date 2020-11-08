@@ -1,0 +1,11 @@
+{
+  "name": "nodejs-simple",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/erwincabrera/nodejs-simple.git",
+  "author": "Erwin Cabrera <erwin.d.cabrera@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

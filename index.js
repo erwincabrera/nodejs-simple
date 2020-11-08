@@ -1,26 +1,16 @@
-const http = require('http')
-const url = require('url')
-const fs = require('fs')
+const path = require('path')
+const express = require('express')
+const app = express()
+const port = process.env.PORT || 3000
 
-http.createServer((req, res) => {
-    const pathName = url.parse(req.url, true).pathname
-    let fileName = './index.html'
+const options = {
+    root: path.join(__dirname, 'public')
+}
 
-    if (pathName !== '/') {
-        fileName = '.' + pathName
-        if (!fileName.endsWith('.html')) {
-            fileName += '.html'
-        }
-    }
-    
-    fs.readFile(fileName, (err, data) => {
-        if (err) {
-            fs.readFile('./404.html', (err, data) => {
-                res.writeHead(404, {'Content-Type': 'text/html'})
-                return res.end(data)
-            })
-        }
-        res.writeHead(200, {'Content-Type': 'text/html'})
-        return res.end(data)
-    })
-}).listen(8080)
+app.get('/', (req, res) => {
+    res.sendFile('index.html', options)
+})
+
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+})
